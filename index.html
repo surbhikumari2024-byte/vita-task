@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VitaTask • Professional Task Manager</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-slate-950 text-slate-200 min-h-screen font-sans">
+
+    <!-- HEADER -->
+    <header class="sticky top-0 bg-slate-900 border-b border-white/10 px-8 py-5 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+            <i class="fa-solid fa-rocket text-3xl text-teal-400"></i>
+            <h1 class="text-3xl font-semibold tracking-tight">VitaTask</h1>
+        </div>
+        <div class="flex items-center gap-6">
+            <button onclick="toggleTheme()" class="text-xl"><i id="theme-icon" class="fa-solid fa-moon"></i></button>
+            <div class="flex items-center gap-3">
+                <div class="text-right">
+                    <p class="font-medium">Surbhi</p>
+                    <p class="text-xs text-teal-400">VIT vellore • BCSE203E</p>
+                </div>
+                <div class="w-9 h-9 bg-teal-400 rounded-2xl flex items-center justify-center text-2xl">👩‍💼</div>
+            </div>
+        </div>
+    </header>
+
+    <div class="flex max-w-screen-2xl mx-auto">
+        <!-- SIDEBAR -->
+        <aside class="w-64 bg-slate-900 h-[calc(100vh-73px)] p-6 border-r border-white/10">
+            <nav class="space-y-2">
+                <div onclick="showSection('dashboard')" class="nav-item flex items-center gap-3 px-5 py-4 rounded-3xl cursor-pointer active" id="nav-dashboard">
+                    <i class="fa-solid fa-house"></i><span>Dashboard</span>
+                </div>
+                <div onclick="showSection('tasks')" class="nav-item flex items-center gap-3 px-5 py-4 rounded-3xl cursor-pointer" id="nav-tasks">
+                    <i class="fa-solid fa-list-check"></i><span>All Tasks</span>
+                </div>
+                <div onclick="showSection('proposal')" class="nav-item flex items-center gap-3 px-5 py-4 rounded-3xl cursor-pointer" id="nav-proposal">
+                    <i class="fa-solid fa-file-alt"></i><span>Proposal</span>
+                </div>
+            </nav>
+
+            <button onclick="showSection('tasks');setTimeout(()=>document.getElementById('new-task').focus(),100)" 
+                    class="mt-10 w-full bg-gradient-to-r from-teal-400 to-indigo-500 py-4 rounded-3xl font-semibold flex items-center justify-center gap-2 hover:scale-105 transition">
+                <i class="fa-solid fa-plus"></i> New Task
+            </button>
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <main class="flex-1 p-8 overflow-auto">
+
+            <!-- DASHBOARD -->
+            <section id="dashboard" class="section">
+                <h1 class="text-4xl font-semibold mb-2">Good morning, Surbhi 👋</h1>
+                <p id="date" class="text-slate-400 mb-8"></p>
+
+                <div class="grid grid-cols-3 gap-6">
+                    <div class="bg-slate-900 rounded-3xl p-6">
+                        <p class="text-slate-400">Total Tasks</p>
+                        <p id="total" class="text-5xl font-semibold mt-2">18</p>
+                    </div>
+                    <div class="bg-slate-900 rounded-3xl p-6">
+                        <p class="text-slate-400">Completed</p>
+                        <p id="completed" class="text-5xl font-semibold mt-2 text-teal-400">14</p>
+                    </div>
+                    <div class="bg-slate-900 rounded-3xl p-6">
+                        <p class="text-slate-400">Streak 🔥</p>
+                        <p id="streak" class="text-5xl font-semibold mt-2">0 days</p>
+                    </div>
+                </div>
+
+                <h2 class="text-xl mt-10 mb-4">Recent Tasks</h2>
+                <div id="recent-list" class="space-y-3"></div>
+            </section>
+
+            <!-- TASKS SECTION -->
+            <section id="tasks" class="section hidden">
+                <h2 class="text-3xl font-semibold mb-6">All Tasks</h2>
+                
+                <div class="bg-slate-900 rounded-3xl p-4 flex gap-4 mb-8">
+                    <input id="new-task" type="text" placeholder="What needs to be done?" 
+                           class="flex-1 bg-transparent outline-none px-6 text-lg">
+                    <button onclick="addTask()" class="bg-teal-400 text-slate-950 px-8 rounded-3xl font-semibold">Add</button>
+                </div>
+
+                <div id="task-list" class="space-y-3"></div>
+            </section>
+
+            <!-- PROPOSAL SECTION -->
+            <section id="proposal" class="section hidden">
+                <h2 class="text-3xl font-semibold mb-8">Digital Assignment – II Proposal</h2>
+                <div class="bg-slate-900 rounded-3xl p-8 max-w-2xl">
+                    <h3 class="font-semibold mb-2">Project Title</h3>
+                    <p class="text-teal-400 text-2xl mb-6">VitaTask – Professional Task Manager</p>
+                    
+                    <h3 class="font-semibold mb-2">Objective</h3>
+                    <p class="mb-6">A clean, modern, single-page productivity app using pure HTML, CSS &amp; JavaScript to help students manage assignments and goals efficiently.</p>
+                    
+                    <h3 class="font-semibold mb-2">Key Features</h3>
+                    <ul class="list-disc pl-5 space-y-2 mb-6">
+                        <li>Add, complete &amp; delete tasks</li>
+                        <li>LocalStorage persistence</li>
+                        <li>Beautiful dark UI with Tailwind</li>
+                        <li>Dashboard with live stats</li>
+                        <li>Fully responsive design</li>
+                    </ul>
+                    
+                    <h3 class="font-semibold mb-2">Technologies</h3>
+                    <p>HTML5 • Tailwind CSS • Vanilla JavaScript • Font Awesome • LocalStorage</p>
+                    
+                    <div class="mt-10 pt-6 border-t text-sm flex justify-between">
+                        <a href="https://github.com/yourusername/vitatask" target="_blank" class="text-teal-400 hover:underline">GitHub Repo →</a>
+                        <p class="text-slate-400">Submitted by Surbhi • BCSE203E</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
